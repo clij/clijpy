@@ -1,12 +1,17 @@
 # CLIJPY
-CLIPY is a bridge between [CLIJ](https://clij.github.io) and [python](https://python.org) via [pyimagj](https://pypi.org/project/pyimagej/)
+CLIPY is a bridge between [CLIJ](https://clij.github.io) and 
+[python](https://python.org) via 
+[pyimagej](https://pypi.org/project/pyimagej/)
 
 ![Image](images/clijpy-screenshot.png)
 
 Right now, this is very preliminary.
 
 ## Installation
-Download [python](https://python.org), install [pyjnius](https://pyjnius.readthedocs.io/en/stable/installation.html#) and [pyimagej](https://pypi.org/project/pyimagej/):
+Download [python](https://python.org), 
+install [pyjnius](https://pyjnius.readthedocs.io/en/stable/installation.html#) 
+and [pyimagej](https://pypi.org/project/pyimagej/),
+for example via [anaconda](https://www.anaconda.com/):
 
 ### Installation on Windows 10:
 ```bash
@@ -34,9 +39,7 @@ pip install matplotlib
 ```
 
 Download and install [Fiji](https://fiji.sc) and activate the clij update site as [described here](https://clij.github.io/clij-docs/installationInFiji). 
-Furthermore, download the following jar files and put them in the `plugins` directory of your Fiji installation
-
-the following files and put them all in a folder:
+Furthermore, download the following jar files and put them in the `plugins` directory of your Fiji installation:
 * [clijpy-0.1.0.jar](https://github.com/clij/CLIJPY/releases/download/0.1.0/clijpy-0.1.0.jar)
 * [clij-advanced-filters_-0.6.2.jar](https://github.com/clij/clij-advanced-filters/releases/download/0.6.2/clij-advanced-filters_-0.6.2.jar)
 
