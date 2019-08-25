@@ -49,7 +49,7 @@ Examples are available in the [python](https://github.com/clij/clijpy/blob/maste
 After installation, you can call the examples like this:
 
 ```bash
-conda actiavte imagej
+conda activate imagej
 python demo.py
 ```
 
