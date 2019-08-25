@@ -1,0 +1,8 @@
+title: CLIJPY
+logo: /images/clij_logo.png
+description: GPU-accelerated image processing in python using CLIJ and pyimagej
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-redirect-from
