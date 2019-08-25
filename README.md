@@ -38,6 +38,28 @@ pip install numpy
 pip install matplotlib
 ```
 
+### Installation on Ubuntu Linux 18.04
+
+
+```bash
+sudo apt-get install maven
+sudo apt-get install python3-pip
+
+sudo apt-get install cython
+pip3 install Cython
+sudo apt-get install default-jdk
+
+```
+Install [miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html).
+
+```bash
+conda env create -f environment.yml
+
+pip3 install pyimagej
+```
+
+
+
 Download and install [Fiji](https://fiji.sc) and activate the clij update site as [described here](https://clij.github.io/clij-docs/installationInFiji). 
 Furthermore, download the following jar files and put them in the `plugins` directory of your Fiji installation:
 * [clijpy-0.1.0.jar](https://github.com/clij/CLIJPY/releases/download/0.1.0/clijpy-0.1.0.jar)
