@@ -82,25 +82,18 @@ clijx.op.mask(detected, thresholded, masked)
 # read out spot positions from spot stack
 clijx.op.connectedComponentsLabeling(masked, labelled)
 numberOfDetectedSpots = clijx.op.maximumOfAllPixels(labelled)
-pointlistSize = [numberOfDetectedSpots, labelled.getDimension()]
-pointlist = clijx.create(pointlistSize, input.getNativeType())
+pointlist = clijx.create([numberOfDetectedSpots, labelled.getDimension()], input.getNativeType())
 clijx.op.spotsToPointList(labelled, pointlist)
 
 # get point coordinates from GPU and bring it in the right shape for napari
-pointsRAI = clijx.pull(pointlist)
-points = ij.py.rai_to_numpy(pointsRAI)
+points = ij.py.rai_to_numpy(clijx.pull(pointlist))
 points[[0, 1, 2], :] = points[[2, 1, 0],:]
 points = np.transpose(points)
-print(points)
 
 # pull image back from GPU and convert it to numpy
-masked_result = clijx.pull(masked)
-np_masked_result = ij.py.rai_to_numpy(masked_result)
-thresholded_result = clijx.pull(thresholded)
-np_thresholded_result = ij.py.rai_to_numpy(thresholded_result)
-image_result = clijx.pull(downsampled)
-np_image_result = ij.py.rai_to_numpy(image_result)
-
+np_masked_result = ij.py.rai_to_numpy(clijx.pull(masked))
+np_thresholded_result = ij.py.rai_to_numpy(clijx.pull(thresholded))
+np_image_result = ij.py.rai_to_numpy(clijx.pull(downsampled))
 
 # view data and results with napari
 import napari
