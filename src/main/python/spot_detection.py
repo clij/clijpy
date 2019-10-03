@@ -19,7 +19,7 @@ ij = imagej.init('C:/programs/fiji-win64/Fiji.app/')
 from skimage import io
 sk_img = io.imread('../resources/Nantes_000646.tif')
 
-# init clijpy to get access to the GUP
+# init clijpy to get access to the GPU
 from jnius import autoclass
 CLIJx = autoclass('net.haesleinhuepf.clijx.CLIJx')
 clijx = CLIJx.getInstance();
@@ -58,7 +58,7 @@ processingSize = [
     originalSize[2] * samplingFactor[2]
 ]
 
-# allocate mamory in GPU for proessing
+# allocate memory in GPU for proessing
 downsampled = clijx.create(processingSize)
 backgroundSubtracted = clijx.create(processingSize)
 blurred = clijx.create(processingSize)
@@ -67,7 +67,7 @@ detected = clijx.create(processingSize)
 masked = clijx.create(processingSize)
 labelled = clijx.create(processingSize)
 
-# preprocess
+# pre-process
 clijx.op.downsample(input, downsampled, Float(samplingFactor[0]), Float(samplingFactor[1]), Float(samplingFactor[2]))
 clijx.op.subtractBackground(downsampled, backgroundSubtracted, backgroundSubtractionXY, backgroundSubtractionXY, backgroundSubtractionZ)
 clijx.op.blur(backgroundSubtracted, blurred, blurXY, blurXY, blurZ)
@@ -90,7 +90,7 @@ points = ij.py.rai_to_numpy(clijx.pull(pointlist))
 points[[0, 1, 2], :] = points[[2, 1, 0],:]
 points = np.transpose(points)
 
-# pull image back from GPU and convert it to numpy
+# pull image stacks back from GPU and convert them to numpy
 np_masked_result = ij.py.rai_to_numpy(clijx.pull(masked))
 np_thresholded_result = ij.py.rai_to_numpy(clijx.pull(thresholded))
 np_image_result = ij.py.rai_to_numpy(clijx.pull(downsampled))
