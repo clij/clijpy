@@ -34,16 +34,13 @@ input = clijx.push(ij_img)
 # allocate memory for the result image
 output = clijx.create(input)
 
-Float = autoclass('java.lang.Float')
-Integer = autoclass('java.lang.Integer')
-
 # workflow configuration
 factor = 1.0
-backgroundSubtractionXY = Float(5)
-backgroundSubtractionZ = Float(0)
-blurXY = Float(3)
-blurZ = Float(3)
-maximumSearch = Integer(1)
+backgroundSubtractionXY = 5
+backgroundSubtractionZ = 0
+blurXY = 3
+blurZ = 3
+maximumSearch = 1
 thresholdAlgorithm = 'Otsu'
 samplingFactor = [
     0.52 * factor,
@@ -51,7 +48,7 @@ samplingFactor = [
     3 * factor
 ];
 
-originalSize = clijx.op.getSize(input)
+originalSize = clijx.getSize(input)
 processingSize = [
     originalSize[0] * samplingFactor[0],
     originalSize[1] * samplingFactor[1],
@@ -68,22 +65,22 @@ masked = clijx.create(processingSize)
 labelled = clijx.create(processingSize)
 
 # pre-process
-clijx.op.downsample(input, downsampled, Float(samplingFactor[0]), Float(samplingFactor[1]), Float(samplingFactor[2]))
-clijx.op.subtractBackground(downsampled, backgroundSubtracted, backgroundSubtractionXY, backgroundSubtractionXY, backgroundSubtractionZ)
-clijx.op.blur(backgroundSubtracted, blurred, blurXY, blurXY, blurZ)
+clijx.downsample(input, downsampled, samplingFactor[0], samplingFactor[1], samplingFactor[2])
+clijx.subtractBackground(downsampled, backgroundSubtracted, backgroundSubtractionXY, backgroundSubtractionXY, backgroundSubtractionZ)
+clijx.blur(backgroundSubtracted, blurred, blurXY, blurXY, blurZ)
 
 # 3D spot detection
-clijx.op.detectMaximaBox(blurred, detected, maximumSearch)
+clijx.detectMaximaBox(blurred, detected, maximumSearch)
 
 # remove spots in background
-clijx.op.automaticThreshold(blurred, thresholded, thresholdAlgorithm)
-clijx.op.mask(detected, thresholded, masked)
+clijx.automaticThreshold(blurred, thresholded, thresholdAlgorithm)
+clijx.mask(detected, thresholded, masked)
 
 # read out spot positions from spot stack
-clijx.op.connectedComponentsLabeling(masked, labelled)
-numberOfDetectedSpots = clijx.op.maximumOfAllPixels(labelled)
+clijx.connectedComponentsLabeling(masked, labelled)
+numberOfDetectedSpots = clijx.maximumOfAllPixels(labelled)
 pointlist = clijx.create([numberOfDetectedSpots, labelled.getDimension()], input.getNativeType())
-clijx.op.spotsToPointList(labelled, pointlist)
+clijx.spotsToPointList(labelled, pointlist)
 
 # get point coordinates from GPU and bring it in the right shape for napari
 points = ij.py.rai_to_numpy(clijx.pull(pointlist))

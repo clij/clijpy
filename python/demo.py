@@ -15,10 +15,10 @@ ij = imagej.init('C:/programs/fiji-win64/Fiji.app/')
 from skimage import io
 sk_img = io.imread('https://samples.fiji.sc/blobs.png')
 
-# init clijpy to get access to the GUP
+# init clijpy to get access to the GPU
 from jnius import autoclass
-CLIJPY = autoclass('net.haesleinhuepf.clijpy.CLIJPY')
-clijpy = CLIJPY.getInstance();
+CLIJx = autoclass('net.haesleinhuepf.clijx.CLIJx')
+clijx = CLIJx.getInstance();
 
 # convert and array to an ImageJ2 img:
 import numpy as np
@@ -26,16 +26,15 @@ np_arr = np.array(sk_img)
 ij_img = ij.py.to_java(np_arr)
 
 # push the image to the GPU
-input = clijpy.push(ij_img)
+input = clijx.push(ij_img)
 # allocate memory for the result image
-output = clijpy.create(input)
+output = clijx.create(input)
 
 # blur the image
-Float = autoclass('java.lang.Float')
-clijpy.op.blur(input, output, Float(5.0), Float(5.0), Float(0.0));
+clijx.op.blur(input, output, 5.0, 5.0, 0.0);
 
 # pull image back from GPU
-ij_img_result = clijpy.pull(output);
+ij_img_result = clijx.pull(output);
 # convert to numpy/python
 np_arr_result = ij.py.rai_to_numpy(ij_img_result);
 
