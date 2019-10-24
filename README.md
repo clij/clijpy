@@ -8,15 +8,17 @@ CLIPY is a bridge between [CLIJ](https://clij.github.io) and
 Right now, this is very preliminary.
 
 ## Installation
+Download and install [Fiji](https://fiji.sc) and activate the clij and clij2 (experimental) update sites as [described here](https://clij.github.io/clij-docs/installationInFiji). 
+You will need to specify an ImageJ location later in your pyimagej scripts. Specify the installation directory of Fiji.
+Futhermore, install [pyimage as described on its github page](https://github.com/imagej/pyimagej). 
+In case that doesn't work, try the following procedures:
+
 Download [python](https://python.org), 
 install [pyjnius](https://pyjnius.readthedocs.io/en/stable/installation.html#) 
 and [pyimagej](https://pypi.org/project/pyimagej/),
 for example via [anaconda](https://www.anaconda.com/):
 
-Download and install [Fiji](https://fiji.sc) and activate the clij update site as [described here](https://clij.github.io/clij-docs/installationInFiji). 
-Furthermore, download the following jar files and put them in the `plugins` directory of your Fiji installation:
-* [clijpy-0.1.0.jar](https://github.com/clij/CLIJPY/releases/download/0.1.0/clijpy-0.1.0.jar)
-* [clij-advanced-filters_-0.6.2.jar](https://github.com/clij/clij-advanced-filters/releases/download/0.6.2/clij-advanced-filters_-0.6.2.jar)
+
 
 ### Installation on Windows 10:
 ```bash
@@ -67,7 +69,7 @@ sudo apt-get install default-jdk
 ```
 
 ## Example code
-Examples are available in the [python](https://github.com/clij/clijpy/blob/master/src/main/python/) folder. 
+Examples are available in the [python](https://github.com/clij/clijpy/blob/master/python/) folder. 
 
 After installation, you can call the examples like this:
 
@@ -77,28 +79,6 @@ python demo.py
 ```
 
 Please note that you need to update the path to your Fiji installation in order to make the scripts run.
-
-## How to develop clijpy
-Clone this repository 
-
-```bash
-git clone https://github.com/clij/CLIJPY
-```
-
-Enter the location of your Fiji installation in the pom.xml:
-
-```xml
-<properties>
-    <imagej.app.directory>C:/programs/fiji-win64/Fiji.app/</imagej.app.directory>
-</properties>
-```
-Build it using maven. 
-
-```bash
-cd clijpy
-mvn install
-```
-
 
 ## Please note
 It is recommended to [use clij from Fiji](https://clij.github.io/clij-docs/installationInFiji). 
