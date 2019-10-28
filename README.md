@@ -22,28 +22,22 @@ for example via [anaconda](https://www.anaconda.com/):
 
 ### Installation on Windows 10:
 ```bash
-set PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_161\jre\bin\server
-copy "C:\Program Files\Java\jdk1.8.0_161\include\win32\jni_md.h" c:\ProgramData\Anaconda3\Library\include
-python -m pip install --upgrade pip setuptools
-python -m pip install --upgrade cython
-pip install pyjnius
-pip install pyimagej
+conda config --add channels conda-forge
+conda config --set channel_priority strict
 
-set "JDK_HOME=C:\Program Files\Java\jdk1.8.0_161\"
+conda create -n pyimagej pyimagej openjdk=8
+Whenever you want to use pyimagej, activate its environment:
 
-pip install jnius
-
-# get the environment.yml file from: https://raw.githubusercontent.com/imagej/pyimagej/master/environment.yml
-conda env create -f environment.yml
-
-conda activate imagej
-
+conda activate pyimagej
 pip install pyimagej
 pip install scikit-image
 pip install scipy
 pip install numpy
 pip install matplotlib
+pip install gputools
 ```
+
+If installation of gputools doesn't work because of issues with pyopencl for Windows, consider downloading a precompiled wheel (e.g. from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/) ) and installing it manually. 
 
 ### Installation on Ubuntu Linux 18.04
 [Download](https://docs.conda.io/en/latest/miniconda.html) and 
