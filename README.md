@@ -24,7 +24,12 @@ conda activate pyimagej
 pip install scikit-image scipy numpy matplotlib gputools
 ```
 
-If installation of gputools doesn't work because of issues with pyopencl for Windows, consider downloading a precompiled wheel (e.g. from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopencl) ) and installing it manually. 
+If installation of gputools doesn't work because of issues with pyopencl for Windows, consider downloading a precompiled wheel (e.g. from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopencl) ) and installing it manually:
+
+```
+pip install pyopencl-2019.1.1+cl12-cp37-cp37m-win_amd64.whl
+pip install gputools
+```
 
 ## Example code
 Examples are available in the [python](https://github.com/clij/clijpy/blob/master/python/) folder. 
