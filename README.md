@@ -48,3 +48,5 @@ It is recommended to [use clij from Fiji](https://clij.github.io/clij-docs/insta
 Python support is under development.
 
 [Back to CLIJ documentation](https://clij.github.io/)
+
+[Imprint](https://clij.github.io/imprint)
