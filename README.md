@@ -1,3 +1,5 @@
+NOTE: Development of CLIJPY is on halt. Check out [py-clEsperanto](https://github.com/clEsperanto/pyclesperanto_prototype) for OpenCL-based GPU-accelerated image processing from python.
+
 # CLIJPY
 CLIPY is a bridge between [CLIJ](https://clij.github.io) and 
 [python](https://python.org) via 
